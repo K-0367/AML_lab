@@ -1,0 +1,40 @@
+import numpy as np
+
+# Given data
+x = np.array([1, 2, 3, 4, 5])
+y = np.array([2, 4, 6, 8, 10])
+
+# Initialize parameters
+m = 0
+c = 0
+
+# Learning rate
+alpha = 0.01
+
+# Number of iterations
+iterations = 1000
+
+n = len(x)
+
+# Gradient Descent
+for i in range(iterations):
+
+    y_pred = m * x + c
+
+    # Calculate cost function
+    cost = (1 / (2 * n)) * np.sum((y_pred - y) ** 2)
+
+    # Calculate gradients
+    dm = (1 / n) * np.sum((y_pred - y) * x)
+    dc = (1 / n) * np.sum(y_pred - y)
+
+    # Update parameters
+    m = m - alpha * dm
+    c = c - alpha * dc
+
+    if i % 100 == 0:
+        print("Iteration:", i, "Cost:", cost)
+
+print("\nFinal Slope (m):", m)
+print("Final Intercept (c):", c)
+print("Final Cost:", cost)
