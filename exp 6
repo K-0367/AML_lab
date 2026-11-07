@@ -1,0 +1,48 @@
+#wap to peroform one way anova test on the given data A[9,11,13,9,8] B[13,12,10,15,5] C[14,13,17,7,9]
+from scipy.stats import f_oneway
+A = [9, 11, 13, 9, 8]
+B = [13, 12, 10, 15, 5]
+C = [14, 13, 17, 7, 9]
+F, p = f_oneway(A, B, C)
+print("One-Way ANOVA Test")
+print("------------------")
+print("F-value =", F)
+print("p-value =", p)
+alpha = 0.05
+
+if p < alpha:
+    print("Reject H0")
+    print("There is a significant difference among the group means.")
+else:
+    print("Accept H0")
+    print("There is no significant difference among the group means.")
+
+#wap to perform spealman correlation on the given data set X[8,7,5,4] Y[9,8,7,6]
+X = [8, 7, 5, 4]
+Y = [9, 8, 7, 6]
+
+n = len(X)
+rank_X = [4, 3, 2, 1]
+rank_Y = [4, 3, 2, 1]
+d = []
+d_square = []
+
+for i in range(n):
+    difference = rank_X[i] - rank_Y[i]
+    d.append(difference)
+    d_square.append(difference ** 2)
+sum_d2 = sum(d_square)
+
+r = 1 - (6 * sum_d2) / (n * (n**2 - 1))
+
+print("Spearman Rank Correlation")
+print("-------------------------")
+print("X =", X)
+print("Y =", Y)
+print("Rank X =", rank_X)
+print("Rank Y =", rank_Y)
+print("d =", d)
+print("d^2 =", d_square)
+print("Sum of d^2 =", sum_d2)
+print("Spearman Correlation =", r)
+
